@@ -13,6 +13,13 @@ then
     fi
 fi
 
+# BUG Input Directory ${BIDS_DIRECTORY} not defined
+# using some bash tricks to get if from the participant label
+DIR=*/${PARTICIPANT_LABEL}
+DIR=$(echo ${DIR} | cut -d "/" -f1)
+echo Input is ${DIR}
+
+
 # Usage: container_exec IMAGE COMMAND OPTIONS
 #   Example: docker run centos:7 uname -a
 #            container_exec centos:7 uname -a
@@ -21,9 +28,9 @@ mkdir -p  ${OUTPUT_DIR}/work
 PYTHONPATH=""
 # Echo command to std out
 echo container_exec ${CONTAINER_IMAGE} \
-               ${BIDS_DIRECTORY} \
+               ${DIR} \
                ${OUTPUT_DIR} \
-               ${PARTICIPANT_LABEL} \
+               participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
                --n-cpus 16 \
@@ -34,9 +41,9 @@ echo container_exec ${CONTAINER_IMAGE} \
                --fs-license-file /opt/license.txt
 
 container_exec ${CONTAINER_IMAGE} \
-               ${BIDS_DIRECTORY} \
+               ${DIR} \
                ${OUTPUT_DIR} \
-               ${PARTICIPANT_LABEL} \
+               participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
                --n-cpus 16 \
@@ -47,4 +54,4 @@ container_exec ${CONTAINER_IMAGE} \
                --fs-license-file /opt/license.txt
 
 
-rm -rf ${BIDS_DIRECTORY}
+rm -rf ${DIR}

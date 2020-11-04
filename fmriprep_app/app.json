@@ -52,7 +52,7 @@
     },
     "details": {
       "label": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-      "showArgument": true,
+      "showArgument": false,
       "argument": "participant --participant_label "
     }
   },
