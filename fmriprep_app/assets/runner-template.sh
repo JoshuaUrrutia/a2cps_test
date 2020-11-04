@@ -33,6 +33,7 @@ echo container_exec ${CONTAINER_IMAGE} \
                participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
+               --fd-spike-threshold ${FD_SPIKE_THRESHOLD} \ 
                --n-cpus 16 \
                --notrack \
                --fs-no-reconall \
@@ -46,6 +47,7 @@ container_exec ${CONTAINER_IMAGE} \
                participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
+               --fd-spike-threshold ${FD_SPIKE_THRESHOLD} \
                --n-cpus 16 \
                --notrack \
                --fs-no-reconall \

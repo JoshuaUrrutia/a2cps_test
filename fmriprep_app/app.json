@@ -65,5 +65,15 @@
       "visible": true,
       "required": true
     }
+  },
+  {
+    "id": "FD_SPIKE_THRESHOLD",
+    "value": {
+      "default": "0.9",
+      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "type": "number",
+      "visible": true,
+      "required": true
+    }
   }]
 }
