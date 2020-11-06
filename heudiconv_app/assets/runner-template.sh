@@ -13,11 +13,6 @@ then
     fi
 fi
 
-# BUG Input Directory ${BIDS_DIRECTORY} not defined
-# using some bash tricks to get if from the participant label
-DIR=*/*-${PARTICIPANT_LABEL}
-DIR=$(echo ${DIR} | cut -d "/" -f1)
-echo Input is ${DIR}
 
 mkdir -p  ${OUTPUT_DIR}
 PYTHONPATH=""
@@ -27,34 +22,49 @@ PYTHONPATH=""
 #            container_exec centos:7 uname -a
 
 # Echo command to std out
-echo container_exec ${CONTAINER_IMAGE} \
-                  heudiconv \
-                 --dicom_dir_template ${DICOM_DIR_TEMPLATE} | --files ${FILES} \
-                 --subjects ${LIST_OF_SUBJECTS} \
-                 --converter {dcm2niix,none}] \
-                 --outdir ${OUTDIR} \
-                 --locator ${LOCATOR} --conv-outdir ${CONV_OUTDIR} \
-                 --anon-cmd ${ANON_CMD} \
-                 --heuristic ${HEURISTIC} --with-prov \
-                 --ses ${SESSION_FOR_LONGITUDINAL} --bids --overwrite \
-                 --datalad] --dbg \
-                 --grouping {studyUID,accession_number} --minmeta \
-                 --random-seed ${RANDOM_SEED} --dcmconfig ${DCMCONFIG} \
+# echo container_exec ${CONTAINER_IMAGE} \
+#                   heudiconv \
+#                  --dicom_dir_template ${DICOM_DIR_TEMPLATE} | --files ${FILES} \
+#                  --subjects ${LIST_OF_SUBJECTS} \
+#                  --converter {dcm2niix,none}] \
+#                  --outdir ${OUTDIR} \
+#                  --locator ${LOCATOR} --conv-outdir ${CONV_OUTDIR} \
+#                  --anon-cmd ${ANON_CMD} \
+#                  --heuristic ${HEURISTIC} --with-prov \
+#                  --ses ${SESSION_FOR_LONGITUDINAL} --bids --overwrite \
+#                  --datalad] --dbg \
+#                  --grouping {studyUID,accession_number} --minmeta \
+#                  --random-seed ${RANDOM_SEED} --dcmconfig ${DCMCONFIG} \
+#
+#
+# container_exec ${CONTAINER_IMAGE} \
+# heudiconv \
+# --dicom_dir_template ${DICOM_DIR_TEMPLATE} | --files ${FILES} \
+# --subjects ${LIST_OF_SUBJECTS} \
+# --converter {dcm2niix,none}] \
+# --outdir ${OUTDIR} \
+# --locator ${LOCATOR} --conv-outdir ${CONV_OUTDIR} \
+# --anon-cmd ${ANON_CMD} \
+# --heuristic ${HEURISTIC} --with-prov \
+# --ses ${SESSION_FOR_LONGITUDINAL} --bids --overwrite \
+# --datalad] --dbg \
+# --grouping {studyUID,accession_number} --minmeta \
+# --random-seed ${RANDOM_SEED} --dcmconfig ${DCMCONFIG} \
 
+echo container_exec ${CONTAINER_IMAGE} \
+  heudiconv \
+  -f ./spacetop.py \
+  -a ${OUTPUT_DIR}/sub-0001/ses-01 \
+  -s 0001 -ss 01 \
+  --anon-cmd M80303495 --overwrite \
+  --files ${DICOM_DIR_TEMPLATE}/M80303495/Study20200114at144741/ \
+  --locator ${OUTPUT_DIR}
 
 container_exec ${CONTAINER_IMAGE} \
-heudiconv \
---dicom_dir_template ${DICOM_DIR_TEMPLATE} | --files ${FILES} \
---subjects ${LIST_OF_SUBJECTS} \
---converter {dcm2niix,none}] \
---outdir ${OUTDIR} \
---locator ${LOCATOR} --conv-outdir ${CONV_OUTDIR} \
---anon-cmd ${ANON_CMD} \
---heuristic ${HEURISTIC} --with-prov \
---ses ${SESSION_FOR_LONGITUDINAL} --bids --overwrite \
---datalad] --dbg \
---grouping {studyUID,accession_number} --minmeta \
---random-seed ${RANDOM_SEED} --dcmconfig ${DCMCONFIG} \
-
-
-rm -rf ${DIR}
+  heudiconv \
+  -f ./spacetop.py \
+  -a ${OUTPUT_DIR}/sub-0001/ses-01 \
+  -s 0001 -ss 01 \
+  --anon-cmd M80303495 --overwrite \
+  --files ${DICOM_DIR_TEMPLATE}/M80303495/Study20200114at144741/ \
+  --locator ${OUTPUT_DIR}

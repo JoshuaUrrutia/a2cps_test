@@ -31,9 +31,10 @@ echo container_exec ${CONTAINER_IMAGE} \
                ${DIR} \
                ${OUTPUT_DIR} \
                participant --participant_label ${PARTICIPANT_LABEL} \
+               ${FIELDMAPS} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
-               --fd-spike-threshold ${FD_SPIKE_THRESHOLD} \ 
+               --fd-spike-threshold ${FD_SPIKE_THRESHOLD} \
                --n-cpus 16 \
                --notrack \
                --fs-no-reconall \

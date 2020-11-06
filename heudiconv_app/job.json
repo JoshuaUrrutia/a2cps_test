@@ -1,16 +1,25 @@
 {
   "name": "test heudiconv",
-  "appId": "a2cps-heudiconv-0.5.4",
+  "appId": "urrutia-heudiconv-0.5.4",
   "archive": true,
   "maxRunTime": "24:00:00",
-  "archivePath": "a2cps/heudiconv-0.5.4",
-  "archiveSystem": "a2cps.home.heejung",
+  "archivePath": "testing/heudiconv-0.5.4",
+  "archiveSystem": "a2cps.home.urrutia",
   "archiveOnAppError": true,
-  "inputs": {
-    "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata"
-  },
   "parameters": {
     "PARTICIPANT_LABEL": "02",
-    "OUTPUT_DIR": "outputs"
+    "OUTPUT_DIR": "outputs",
+    "DICOM_DIR_TEMPLATE": "/work/07514/heejung/test_data/spacetop/",
+    "OUTPUT_DIR": "outputs",
+    "FILES": "outputs",
+    "LIST_OF_SUBJECTS": "outputs",
+    "LOCATOR": "outputs",
+    "CONV_OUTDIR": "outputs",
+    "ANON_CMD": "outputs",
+    "HEURISTIC": "outputs",
+    "SESSION_FOR_LONGITUDINAL": "outputs",
+    "GROUPING": "outputs",
+    "RANDOM_SEED": "outputs",
+    "DCMCONFIG": "outputs"
   }
 }

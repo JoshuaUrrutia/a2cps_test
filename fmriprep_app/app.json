@@ -75,5 +75,16 @@
       "visible": true,
       "required": true
     }
+    },
+    {
+      "id": "FIELDMAPS",
+      "value": {
+        "default": "fieldmaps",
+        "description": "the output path for the outcomes of preprocessing and visual reports",
+        "type": "enum",
+        "enumValues": ["fieldmaps", "--ignore fieldmaps"],
+        "visible": true,
+        "required": false
+      }
   }]
 }
