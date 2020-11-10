@@ -21,9 +21,9 @@ echo container_exec ${CONTAINER_IMAGE} \
                participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
-               --n-cpus 16 \
+               --n-cpus 200 \
                --notrack \
-               --mem_mb 48000 \
+               --mem_mb 80000 \
                ${IGNORE_FIELD_MAPS} ${IGNORE_SLICE_TIMING} ${HEAD_MOTION} ${DUMMY_SCANS} \
                ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} \
                --fs-license-file /opt/freesurfer_license/license.txt
@@ -35,9 +35,9 @@ container_exec ${CONTAINER_IMAGE} \
                participant --participant_label ${PARTICIPANT_LABEL} \
                -w  ${OUTPUT_DIR}/work \
                --write-graph \
-               --n-cpus 16 \
+               --n-cpus 200 \
                --notrack \
-               --mem_mb 48000 \
+               --mem_mb 80000 \
                ${IGNORE_FIELD_MAPS} ${IGNORE_SLICE_TIMING} ${HEAD_MOTION} ${DUMMY_SCANS} \
                ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} \
                --fs-license-file /opt/freesurfer_license/license.txt

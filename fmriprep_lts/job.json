@@ -16,15 +16,5 @@
     "ICA_AROMA_USE": true,
     "ICA_AROMA_DIMENSIONALITY": -1,
     "CIFTI_OUTPUT": "91k"
-  },
-  "notifications": [
-      {
-          "event": "FAILED",
-          "url": "Hee.Jung.Jung.GR@dartmouth.edu"
-      },
-      {
-          "event": "FINISHED",
-          "url": "Hee.Jung.Jung.GR@dartmouth.edu"
-      }
-  ]
+  }
 }

@@ -1,0 +1,374 @@
+{
+    "id": "fmriprep_LTS-20.2.1u2",
+    "name": "fmriprep_LTS",
+    "icon": null,
+    "uuid": "2691110441074954731-242ac118-0001-005",
+    "parallelism": "SERIAL",
+    "defaultProcessorsPerNode": 1,
+    "defaultMemoryPerNode": 1,
+    "defaultNodeCount": 1,
+    "defaultMaxRunTime": null,
+    "defaultQueue": "normal",
+    "version": "20.2.1",
+    "revision": 2,
+    "isPublic": true,
+    "helpURI": null,
+    "label": "fMRIPRep-20.2.1",
+    "owner": "wma_prtl",
+    "shortDescription": "fMRIPrep is a functional magnetic resonance imaging (fMRI) data preprocessing pipeline",
+    "longDescription": null,
+    "tags": [
+        "appCategory:Data Processing"
+    ],
+    "ontology": [],
+    "executionType": "HPC",
+    "executionSystem": "cep.community.exec.stampede2",
+    "deploymentPath": "/api/2/apps/fmriprep_LTS-20.2.1u2.zip",
+    "deploymentSystem": "cep.storage.default",
+    "templatePath": "runner-template.sh",
+    "testPath": "tester.sh",
+    "checkpointable": false,
+    "lastModified": "2020-11-10T15:46:10.000-06:00",
+    "modules": [
+        "load tacc-singularity"
+    ],
+    "available": true,
+    "inputs": [
+        {
+            "id": "BIDS_DIRECTORY",
+            "value": {
+                "validator": null,
+                "visible": true,
+                "required": true,
+                "order": 0,
+                "enquote": false,
+                "default": "agave://a2cps.storage.public/a2cps_openneuro_testdata/"
+            },
+            "details": {
+                "label": "BIDS_DIRECTORY",
+                "description": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder).",
+                "argument": null,
+                "showArgument": false,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "ontology": [
+                    "https://bids.neuroimaging.io/specification.html"
+                ],
+                "fileTypes": []
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "PARTICIPANT_LABEL",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "string",
+                "order": 0,
+                "enquote": false,
+                "default": "sub-01",
+                "validator": null
+            },
+            "details": {
+                "label": "PARTICIPANT_LABEL",
+                "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+                "argument": "participant --participant_label ",
+                "showArgument": false,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "CIFTI_OUTPUT",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "enumeration",
+                "order": 0,
+                "enquote": false,
+                "default": "--cifti-output 91k",
+                "enum_values": [
+                    {
+                        "--cifti-output 91k": "--cifti-output 91k"
+                    },
+                    {
+                        "--cifti-output 170k": "--cifti-output 170k"
+                    },
+                    {
+                        "": "undefined"
+                    }
+                ]
+            },
+            "details": {
+                "label": "CIFTI_OUTPUT",
+                "description": "output preprocessed BOLD as a CIFTI dense timeseries. Optionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution)",
+                "argument": null,
+                "showArgument": false,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "IGNORE_SLICE_TIMING",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "flag",
+                "order": 0,
+                "enquote": false,
+                "default": false,
+                "validator": null
+            },
+            "details": {
+                "label": "IGNORE_SLICE_TIMING",
+                "description": "Ignore slice timing correction for the functionals in the pipeline",
+                "argument": "--ignore splicetiming ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "ICA_AROMA_USE",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "flag",
+                "order": 0,
+                "enquote": false,
+                "default": false,
+                "validator": null
+            },
+            "details": {
+                "label": "ICA_AROMA_USE",
+                "description": "add ICA_AROMA to your preprocessing stream",
+                "argument": "--use-aroma ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "ICA_AROMA_DIMENSIONALITY",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "number",
+                "order": 0,
+                "enquote": false,
+                "default": 0,
+                "validator": null
+            },
+            "details": {
+                "label": "ICA_AROMA_DIMENSIONALITY",
+                "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)",
+                "argument": "--aroma-melodic-dimensionality ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "OUTPUT_DIR",
+            "value": {
+                "visible": true,
+                "required": true,
+                "type": "string",
+                "order": 0,
+                "enquote": false,
+                "default": "outputs",
+                "validator": null
+            },
+            "details": {
+                "label": "OUTPUT_DIR",
+                "description": "The output directory name for the outcomes of preprocessing and visual reports",
+                "argument": null,
+                "showArgument": false,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "HEAD_MOTION",
+            "value": {
+                "visible": true,
+                "required": true,
+                "type": "enumeration",
+                "order": 0,
+                "enquote": false,
+                "default": "9",
+                "enum_values": [
+                    {
+                        "6": "6"
+                    },
+                    {
+                        "9": "9"
+                    },
+                    {
+                        "12": "12"
+                    }
+                ]
+            },
+            "details": {
+                "label": "HEAD_MOTION",
+                "description": "Degrees of freedom when registering BOLD to T1w images. 9 degrees (rotation, translation, and scaling) are used by default.",
+                "argument": "--bold2t1w-dof ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "CONTAINER_IMAGE",
+            "value": {
+                "visible": false,
+                "required": true,
+                "type": "string",
+                "order": 0,
+                "enquote": false,
+                "default": "jurrutia/fmriprep:20.2.1",
+                "validator": null
+            },
+            "details": {
+                "label": "CONTAINER_IMAGE",
+                "description": null,
+                "argument": null,
+                "showArgument": false,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "IGNORE_FIELD_MAPS",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "flag",
+                "order": 0,
+                "enquote": false,
+                "default": false,
+                "validator": null
+            },
+            "details": {
+                "label": "IGNORE_FIELD_MAPS",
+                "description": "Ignore distortion correction in the pipeline",
+                "argument": "--ignore fieldmaps ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "FD_SPIKE",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "number",
+                "order": 0,
+                "enquote": false,
+                "default": 0,
+                "validator": null
+            },
+            "details": {
+                "label": "FD_SPIKE",
+                "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement",
+                "argument": "--fd-spike-threshold ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        },
+        {
+            "id": "DUMMY_SCANS",
+            "value": {
+                "visible": true,
+                "required": false,
+                "type": "number",
+                "order": 0,
+                "enquote": false,
+                "default": 0,
+                "validator": null
+            },
+            "details": {
+                "label": "DUMMY_SCANS",
+                "description": "Number of non steady state volumes.",
+                "argument": "--dummy-scans ",
+                "showArgument": true,
+                "repeatArgument": false
+            },
+            "semantics": {
+                "minCardinality": 0,
+                "maxCardinality": 1,
+                "ontology": []
+            }
+        }
+    ],
+    "outputs": [],
+    "_links": {
+        "self": {
+            "href": "https://portals-api.tacc.utexas.edu/apps/v2/fmriprep_LTS-20.2.1u2"
+        },
+        "executionSystem": {
+            "href": "https://portals-api.tacc.utexas.edu/systems/v2/cep.community.exec.stampede2"
+        },
+        "storageSystem": {
+            "href": "https://portals-api.tacc.utexas.edu/systems/v2/cep.storage.default"
+        },
+        "history": {
+            "href": "https://portals-api.tacc.utexas.edu/apps/v2/fmriprep_LTS-20.2.1u2/history"
+        },
+        "metadata": {
+            "href": "https://portals-api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%222691110441074954731-242ac118-0001-005%22%7D"
+        },
+        "owner": {
+            "href": "https://portals-api.tacc.utexas.edu/profiles/v2/wma_prtl"
+        },
+        "permissions": {
+            "href": "https://portals-api.tacc.utexas.edu/apps/v2/fmriprep_LTS-20.2.1u2/pems"
+        }
+    }
+}

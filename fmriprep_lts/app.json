@@ -1,5 +1,5 @@
 {
-  "name": "{{ agave.username }}-{{ app.name }}",
+  "name": "wma_prtl-{{ app.name }}",
   "version": "{{ app.version }}",
   "executionType": "HPC",
   "executionSystem": "{{ app.hpc_system}}",
@@ -8,8 +8,11 @@
   "deploymentSystem": "{{ app.storage_system}}",
   "defaultProcessorsPerNode": 1,
   "defaultNodeCount": 1,
+  "tags": [
+        "appCategory:Data Processing"
+      ],
   "defaultQueue": "normal",
-  "label": "fMRIPRep",
+  "label": "fMRIPRep-{{ app.version }}",
   "modules": ["load tacc-singularity"],
   "shortDescription": "{{ app.description }}",
   "templatePath": "runner-template.sh",
